@@ -21,14 +21,14 @@ if uploaded_file:
     st.write(data.isnull().sum())
 
     if 'isFraud' in data.columns:
-        x = data.drop('isFraud', axis=1)
+        X = data.drop('isFraud', axis=1)
         y = data['isFraud']
     else:
-        st.warning("No 'isFraud' column found — assuming this is new data for prediction.")
-        x = data
+        st.warning("No 'isFraud' column found — assuming this is new data for prediction. Please rename your target column to isFraud.")
+        X = data
         y = None
 
-    x = pd.get_dummies(x)
+    X = pd.get_dummies(X)
 
     model_loaded = False
     try:
@@ -44,11 +44,11 @@ if uploaded_file:
 
     if not model_loaded:
         if y is not None:
-            x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
             model = RandomForestClassifier(n_estimators=100, random_state=42)
-            model.fit(x_train, y_train)
+            model.fit(X_train, y_train)
 
-            y_pred = model.predict(x_test)
+            y_pred = model.predict(X_test)
             acc = accuracy_score(y_test, y_pred)
             st.write("### Model Evaluation:")
             st.write(f"**Accuracy:** {acc:.4f}")
@@ -62,7 +62,7 @@ if uploaded_file:
             st.stop()
 
     if st.button("Predict Fraud"):
-        preds = model.predict(x)
+        preds = model.predict(X)
         st.subheader("Prediction Results (Is Fraud/ Not Fraud)")
         result_df = pd.DataFrame({
             "Transaction_ID": range(len(preds)),
