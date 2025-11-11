@@ -2,8 +2,7 @@
 
 <h3>Objective:</h3>
 <p>
-  To build a machine learning model that detects fraudulent transactions from multiple datasets by cleaning, merging, and 
-  modeling data efficiently.
+  To build a machine learning model that detects fraudulent transactions from multiple datasets by cleaning, merging, and modeling data efficiently.
 </p>
 
 <h3>Challenges Faced:</h3>
@@ -15,6 +14,8 @@
 - Difficulty in merging data due to the absence of common columns.
 </pre>
 
+<h3>Tech Stack</h3>
+Python • pandas • scikit-learn • RandomForest • imbalanced-learn (class weights/SMOTE) • NumPy • Matplotlib • Streamlit (demo)
 
 <h3>Steps Taken:</h3>
 <h3>1. Data Inspection & Cleaning</h3>
@@ -41,8 +42,10 @@
 
 <li>Evaluated with classification report, accuracy, precision, recall, F1-score.</li>
 
-<h3>5. Results</h3>
-
-<li>Achieved strong classification metrics with minimal overfitting.</li>
-
-<li>Compared model performance across different random seeds and parameters.</li>
+<h3> Results </h3>
+<li>Model: Random Forest</li>   
+<li>Dataset size: 1.42M transactions</li>
+<b>Performance:</b>
+<li>Accuracy: 99.94% (reflects imbalance)</li>
+<li>Fraud-class (minority) F1: 0.79</li>
+<li>Macro average F1: 0.90 (weighted 1.00)</li>
